@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Untuk Istriku Tercinta</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: url('AAP02245.JPG') no-repeat center center/cover;
+      font-family: 'Segoe UI', sans-serif;
+      color: white;
+      text-shadow: 2px 2px 5px rgba(0,0,0,0.7);
+      overflow: hidden;
+    }
+
+    .container {
+      text-align: center;
+      background: rgba(0,0,0,0.5);
+      padding: 20px 40px;
+      border-radius: 15px;
+      max-width: 600px;
+    }
+
+    h1 {
+      font-size: 1.3rem;
+      margin-bottom: 20px;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+    }
+
+    h1.show {
+      opacity: 1;
+    }
+
+    .btn {
+      margin-top: 15px;
+      padding: 10px 20px;
+      background: #ff4d6d;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background 0.3s;
+    }
+
+    .btn:hover {
+      background: #ff1a4d;
+    }
+
+    .heart {
+      position: absolute;
+      top: -10px;
+      font-size: 24px;
+      color: pink;
+      animation: fall 5s linear infinite;
+    }
+
+    @keyframes fall {
+      0% { transform: translateY(-10px) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1 id="pesan" class="show">Happy 1st Wedding Anniversary<br>21 September 2025</h1>
+    <button class="btn" onclick="gantiPesan()">Klik untuk baca lagi</button>
+    <br>
+    <button class="btn" onclick="playMusik()">🎵 Putar Musik</button>
+  </div>
+
+  <audio id="backsound" src="nostalgic-piano-solo-407897.mp3" autoplay loop></audio>
+
+  <script>
+    const pesanList = [
+      "💖 Happy 1st Wedding Anniversary 💖<br>21 September 2025",
+      "Maaf ucapannya telat yaa, aku buat pesan ini belajar sendiri hehe",
+      "Selamat hari pernikahan bee bee ku 🙂",
+      "Terimakasih bee bee, sudah bersedia menjadi istri dan pendamping hidupku 😊",
+      "Aku bersyukur banget bisa dipertemukan dan dipasangkan dengan wanita seperti bee bee yang spek PRIMADONA haha",
+      "Aku mohon maaf yaa kalo selama ini, mungkin aku ada salah kata maupun perbuatan 🙏",
+      "Aku juga minta maaf mungkin belum bisa membuat bee bee merasa bahagia 🤲",
+      "Tapi aku selalu belajar buat jadi penuntun yang baik 🤗",
+      "Buat jadi kepala keluarga yang sayang istri dan anak 💖",
+      "Bee bee ku, istriku tercinta, aku harap pernikahan kita bisa langgeng selamanya 🌹",
+      "Aku harap keluarga kecil kita selalu bahagia terus ke depannya 😢",
+      "Terimakasih yaa untuk segalanya 😄"
+    ];
+    let index = 0;
+
+    function gantiPesan() {
+      const pesanEl = document.getElementById("pesan");
+      pesanEl.classList.remove("show");
+      setTimeout(() => {
+        index = (index + 1) % pesanList.length;
+        pesanEl.innerHTML = pesanList[index];
+        pesanEl.classList.add("show");
+      }, 500); // jeda sebelum fade-in pesan baru
+    }
+
+    function playMusik() {
+      const musik = document.getElementById("backsound");
+      musik.play();
+    }
+
+    // efek hati jatuh
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.className = "heart";
+      heart.innerText = "❤️";
+      heart.style.left = Math.random() * window.innerWidth + "px";
+      heart.style.fontSize = (20 + Math.random() * 20) + "px";
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 5000);
+    }
+    setInterval(createHeart, 1000);
+  </script>
+</body>
+</html>
